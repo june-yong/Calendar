@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 class calendar
 {
@@ -22,5 +23,5 @@ class calendar
     void AddDay(int day);
 
     void DisplayYear(int year);
-    void DisplayMonth(int month);
+    void DisplayMonth(int year, int month);
 };

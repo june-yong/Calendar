@@ -36,29 +36,39 @@ void calendar::AddMonth(int month)
 
 void calendar::AddDay(int day)
 {
-    int MonthDay[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int addYear = 0;
-    int addMonth = 0;
-    int addDay = 0;
-    int index = 0;
+    int MonthDay[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int addYear = mYear;
+    int addMonth = mMonth;
+    int addDay = mDay + day;
 
-    addDay = mDay + day;
-    addYear = mYear + (addDay / 365);
-    addDay = addDay % 365;
-
-    // TODO: 윤년과 2월에 대한 처리가 안되고 있다....
-
-    while (MonthDay[mMonth - 1 + index] < addDay)
+    for (int i = mMonth; addDay < MonthDay[i]; ++i)
     {
-        addMonth++;
-        addDay -= MonthDay[mMonth - 1 + index];
-        index++;
-        // TODO:for문으로 변경할까 ?
-        if (12 == (mMonth - 1 + index))
+        if (2 == addMonth)
         {
-            index = 0;
+            if (isLeapYear)
+            {
+                addDay -= 29;
+            }
+            else
+            {
+                addDay -= 28;
+            }
+        }
+        else
+        {
+            addDay -= MonthDay[i];
+        }
+
+        addMonth++;
+        if (13 <= addMonth)
+        {
+            addYear++;
+            addMonth = 1;
+            i = 1;
         }
     }
+
+    calendar::PrintDate(addYear, addMonth, addDay);
 }
 
 bool calendar::isLeapYear(int year)
@@ -77,8 +87,9 @@ void calendar::DisplayYear(int year)
 {
 }
 
-void calendar::DisplayMonth(int month)
+void calendar::DisplayMonth(int year, int month)
 {
+    std::format("{}+{}={}", 1, 2, 3);
 }
 
 void calendar::PrintDate(int year, int month, int day)
