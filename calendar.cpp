@@ -37,6 +37,28 @@ void calendar::AddMonth(int month)
 void calendar::AddDay(int day)
 {
     int MonthDay[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int addYear = 0;
+    int addMonth = 0;
+    int addDay = 0;
+    int index = 0;
+
+    addDay = mDay + day;
+    addYear = mYear + (addDay / 365);
+    addDay = addDay % 365;
+
+    // TODO: 윤년과 2월에 대한 처리가 안되고 있다....
+
+    while (MonthDay[mMonth - 1 + index] < addDay)
+    {
+        addMonth++;
+        addDay -= MonthDay[mMonth - 1 + index];
+        index++;
+        // TODO:for문으로 변경할까 ?
+        if (12 == (mMonth - 1 + index))
+        {
+            index = 0;
+        }
+    }
 }
 
 bool calendar::isLeapYear(int year)
