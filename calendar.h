@@ -10,7 +10,7 @@ class calendar
     int mDay;
 
     bool isLeapYear(int year);
-    void PrintDate(int day);
+    void PrintDate(int year, int month, int day);
 
   public:
     calendar() = default;

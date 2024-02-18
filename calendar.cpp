@@ -18,21 +18,25 @@ void calendar::SetDate(int year, int month, int day)
 
 void calendar::AddYear(int year)
 {
-    std::cout << "\n\n\n";
-    std::cout << "설정된 날짜는 " << mYear << "년" << mMonth << "월" << mDay << "일 입니다. \n";
-    std::cout << year << "년이 지나면 \n";
-    year += mYear;
-    std::cout << "새로운 날짜는 " << year << "년" << mMonth << "월" << mDay << "일 입니다. \n" << std::endl;
+    int addYear = mYear + year;
+
+    calendar::PrintDate(addYear, mMonth, mDay);
 }
 
 void calendar::AddMonth(int month)
 {
-    mMonth += month;
-    calendar::PrintDate(mMonth);
+    int addMonth = mMonth + month;
+    int addYear = 0;
+
+    addYear = mYear + (addMonth / 12);
+    addMonth = addMonth % 12;
+
+    calendar::PrintDate(addYear, addMonth, mDay);
 }
 
 void calendar::AddDay(int day)
 {
+    int MonthDay[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 }
 
 bool calendar::isLeapYear(int year)
@@ -55,7 +59,9 @@ void calendar::DisplayMonth(int month)
 {
 }
 
-void calendar::PrintDate(int day)
+void calendar::PrintDate(int year, int month, int day)
 {
-    std::cout << day << std::endl;
+    std::cout << "\n\n\n";
+    std::cout << "설정된 날짜는 " << mYear << "년" << mMonth << "월" << mDay << "일 입니다. \n";
+    std::cout << "새로운 날짜는 " << year << "년" << month << "월" << day << "일 입니다. \n" << std::endl;
 }
