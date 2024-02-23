@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+enum YEAR { JAN = 1, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC };
+enum WEEK { SUN = 0, MON, TUE, WED, THU, FRI, SAT };
+
 class Calendar
 {
     // 1800.1.1 is Wed;
@@ -12,6 +15,7 @@ class Calendar
 
     bool isLeapYear(int year);
     void PrintDate(int year, int month, int day);
+    void DisplayError(int error);
 
   public:
     Calendar() = default;
