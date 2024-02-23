@@ -10,8 +10,9 @@ int main()
     cal.AddDay(1000);
 
     cal.DisplayMonth(2024, 10);
-
     cal.DisplayMonth(2024, 4);
+    cal.DisplayMonth(1800, 3);
+    cal.DisplayMonth(2024, 2);
 
     return 0;
 }
