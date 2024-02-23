@@ -88,11 +88,13 @@ bool Calendar::isLeapYear(int year)
 }
  */
 
+// TODO: 날짜 계산부분과 출력부분으로 함수 쪼개기
 void Calendar::DisplayMonth(int year, int month)
 {
     int MonthDay[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int LeapYearCount = 0;
     int DisplayWeek = 0;
+    int DisplayMonth = 0;
 
     if (1800 > year)
     {
@@ -131,7 +133,6 @@ void Calendar::DisplayMonth(int year, int month)
 
     DisplayWeek += 3; // 1800.1.1 WED (3)
     DisplayWeek %= 7;
-    std::cout << DisplayWeek;
 
     std::cout << "\n\n\n";
     std::cout << "   " << year << " 년    " << month << " 월\n";
@@ -141,8 +142,19 @@ void Calendar::DisplayMonth(int year, int month)
     {
         std::printf("%4s", " ");
     }
-    for (int i = 1; i <= MonthDay[month]; ++i)
+
+    DisplayMonth = MonthDay[month];
+    if (isLeapYear(year) == true)
     {
+        if (FEB == month)
+        {
+            DisplayMonth = 29;
+        }
+    }
+
+    for (int i = 1; i <= DisplayMonth; ++i)
+    {
+
         std::printf("%4d", i);
 
         if (0 == (i + DisplayWeek) % 7)
