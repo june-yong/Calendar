@@ -6,7 +6,7 @@ int main()
 
     cal.AddYear(3);
     cal.AddMonth(3);
-    cal.AddDay(10); // 에러 발생함
+    cal.AddDay(10);
 
     return 0;
 }

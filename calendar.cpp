@@ -40,7 +40,7 @@ void Calendar::AddDay(int day)
     int addMonth = mMonth;
     int addDay = mDay + day;
 
-    for (int i = mMonth; addDay < MonthDay[i]; ++i)
+    while (addDay > MonthDay[addMonth])
     {
         if (2 == addMonth)
         {
@@ -55,7 +55,7 @@ void Calendar::AddDay(int day)
         }
         else
         {
-            addDay -= MonthDay[i];
+            addDay -= MonthDay[addMonth];
         }
 
         addMonth++;
@@ -63,7 +63,6 @@ void Calendar::AddDay(int day)
         {
             addYear++;
             addMonth = 1;
-            i = 1;
         }
     }
 
