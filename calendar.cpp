@@ -85,11 +85,9 @@ bool Calendar::isLeapYear(int year)
 /* void Calendar::DisplayYear(int year)
 {
     // 횡으로 3달을 한번에 출력해야 되는데...
-}
- */
+} */
 
-// TODO: 날짜 계산부분과 출력부분으로 함수 쪼개기
-void Calendar::DisplayMonth(int year, int month)
+int Calendar::GetWeek(int year, int month)
 {
     int MonthDay[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int LeapYearCount = 0;
@@ -134,15 +132,16 @@ void Calendar::DisplayMonth(int year, int month)
     DisplayWeek += 3; // 1800.1.1 WED (3)
     DisplayWeek %= 7;
 
-    std::cout << "\n\n\n";
-    std::cout << "   " << year << " 년    " << month << " 월\n";
-    std::cout << "----------------------------\n";
-    std::cout << " SUN MON TUE WED THU FRI SAT\n";
-    for (int i = 0; i < DisplayWeek; ++i)
-    {
-        std::printf("%4s", " ");
-    }
+    return DisplayWeek;
+}
 
+void Calendar::DisplayMonth(int year, int month)
+{
+    int MonthDay[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int DisplayWeek = 0;
+    int DisplayMonth = 0;
+
+    DisplayWeek = Calendar::GetWeek(year, month);
     DisplayMonth = MonthDay[month];
     if (isLeapYear(year) == true)
     {
@@ -150,6 +149,15 @@ void Calendar::DisplayMonth(int year, int month)
         {
             DisplayMonth = 29;
         }
+    }
+
+    std::cout << "\n\n\n";
+    std::cout << "      " << year << " 년    " << month << " 월\n";
+    std::cout << "----------------------------\n";
+    std::cout << " SUN MON TUE WED THU FRI SAT\n";
+    for (int i = 0; i < DisplayWeek; ++i)
+    {
+        std::printf("%4s", " ");
     }
 
     for (int i = 1; i <= DisplayMonth; ++i)
